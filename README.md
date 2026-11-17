@@ -5,8 +5,8 @@ Site statique (HTML, CSS, JavaScript). Aucun build nécessaire : le dossier est 
 ## Structure
 
 - `index.html` : toute la page (contenu, styles, scripts)
-- `frames/` : 80 images de la vidéo (fond transparent) pour l'animation au défilement
-- `assets/` : photos des projets, `resume.pdf` (bouton Download résumé), `lybrinthia-report.pdf`
+- `frames/` : 238 images de la vidéo (fond transparent) pour l'animation au défilement : les 80 images d'origine plus des images intermédiaires calculées (interpolation par flux optique) pour un mouvement fluide
+- `assets/` : photos des projets, `resume.pdf` (CV anglais, bouton Download résumé), `resume-fr.pdf` (CV français), `lybrinthia-report.pdf`
 
 ## Tester en local
 
@@ -47,7 +47,26 @@ Site statique (HTML, CSS, JavaScript). Aucun build nécessaire : le dossier est 
     git checkout main && git merge maj-projets && git push
     git tag v1.1 && git push --tags    # pour garder cette version
 
+
+## Formulaire de contact
+
+Le bouton « Send me a message » (section Contact) ouvre un formulaire.
+
+- **Sans configuration** : à l'envoi, le formulaire ouvre le logiciel de mail du visiteur avec le message déjà rempli, à destination de khelifi.nourhen@gmail.com.
+- **Avec un service gratuit (recommandé)** : les messages arrivent directement dans ta boîte mail, sans que le visiteur ait besoin d'un logiciel de mail.
+  1. Créer un compte gratuit sur https://formspree.io, puis « New form » avec ton adresse e-mail.
+  2. Copier l'adresse du formulaire (elle ressemble à `https://formspree.io/f/abcdwxyz`).
+  3. Dans `index.html`, chercher `const FORM_ENDPOINT="";` et coller l'adresse entre les guillemets :
+
+         const FORM_ENDPOINT="https://formspree.io/f/abcdwxyz";
+
+  4. `git add . && git commit -m "Formulaire de contact" && git push`
+  5. Faire un envoi test depuis le site en ligne, puis confirmer l'adresse e-mail demandée par Formspree.
+
+Le formulaire ne fonctionne en envoi direct que sur le site publié (GitHub Pages, Netlify…), pas dans l'aperçu Claude.
+Un champ caché anti-spam est déjà en place. Le formulaire gratuit de Formspree est limité à quelques dizaines de messages par mois.
+
 ## À vérifier avant de rendre le dépôt public
 
-- `assets/resume.pdf` contient ton numéro de téléphone (visible par tout le monde) : remplace-le par une version sans téléphone si tu préfères.
+- `assets/resume.pdf` et `assets/resume-fr.pdf` contiennent ton numéro de téléphone (visible par tout le monde) : remplace-le par une version sans téléphone si tu préfères.
 - Plusieurs images de projets montrent des identifiants (admin/admin123), des visages ou des noms de coéquipiers : floute-les ou retire-les.
